@@ -26,7 +26,11 @@ jobs:
           npm ci
 
       - name: Run Biome lint
-        run: npm run biome:lint
+        run: |
+          cd frontend
+          npm run biome:lint
 
       - name: Run cspell lint
-        run: npm run cspell:lint
+        run: |
+          cd frontend
+          npm run cspell:lint

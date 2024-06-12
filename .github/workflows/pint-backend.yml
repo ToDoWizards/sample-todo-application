@@ -1,0 +1,29 @@
+name: Laravel Pint
+
+on:
+  push:
+    paths:
+      - 'laravel/**'
+  pull_request:
+    paths:
+      - 'laravel/**'
+
+jobs:
+  laravel-pint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: 8.0 # Your PHP version
+          tools: composer
+
+      - name: Install dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+
+      - name: Run Laravel Pint
+        run: vendor/bin/pint --test
